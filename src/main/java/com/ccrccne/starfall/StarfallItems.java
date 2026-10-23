@@ -16,6 +16,7 @@ import net.minecraft.world.item.Rarity;
 
 public final class StarfallItems {
 	public static final Item STAR_FRAGMENT = register("star_fragment", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
+	public static final Item STAR_WAND = register("star_wand", StarWandItem::new, new Item.Properties().durability(64).repairable(STAR_FRAGMENT).rarity(Rarity.UNCOMMON));
 
 	// Pestaña propia en el modo creativo con todo lo del mod
 	public static final ResourceKey<CreativeModeTab> TAB_KEY = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Starfall.id("starfall"));
@@ -34,6 +35,7 @@ public final class StarfallItems {
 				.icon(() -> new ItemStack(STAR_FRAGMENT))
 				.displayItems((parameters, output) -> {
 					output.accept(STAR_FRAGMENT);
+					output.accept(STAR_WAND);
 					output.accept(StarfallBlocks.FALLEN_STAR);
 					StarfallBlocks.PAPER_LAMPS.values().forEach(output::accept);
 					output.accept(StarfallBlocks.SKY_BLOCK);

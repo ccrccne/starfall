@@ -24,6 +24,11 @@ public final class SkyStreaks {
 	private SkyStreaks() {
 	}
 
+	// Lanza una estrella que pasa por un punto concreto del cielo (lo usan las pruebas para grabar el GIF)
+	public static void spawnThrough(Vec3 point, double direction, RandomSource random) {
+		ACTIVE.add(Streak.through(point, direction, random));
+	}
+
 	public static void tick(ClientLevel level) {
 		Minecraft minecraft = Minecraft.getInstance();
 		if (minecraft.isPaused()) {
@@ -69,8 +74,10 @@ public final class SkyStreaks {
 			double angle = random.nextDouble() * Math.PI * 2;
 			double distance = 60 + random.nextDouble() * 50;
 			double height = 60 + random.nextDouble() * 35;
-			Vec3 through = camera.add(Math.cos(angle) * distance, height, Math.sin(angle) * distance);
+			return through(camera.add(Math.cos(angle) * distance, height, Math.sin(angle) * distance), direction, random);
+		}
 
+		static Streak through(Vec3 through, double direction, RandomSource random) {
 			double dir = direction + (random.nextDouble() - 0.5) * 0.25;
 			double speed = 3.2 + random.nextDouble() * 1.3;
 			Vec3 velocity = new Vec3(Math.cos(dir) * speed, -speed * (0.10 + random.nextDouble() * 0.10), Math.sin(dir) * speed);

@@ -22,6 +22,17 @@ loom {
 	}
 }
 
+// Pruebas que abren el juego solas; las usamos para tomar capturas y el GIF del README
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "starfall-gametest"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = false
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

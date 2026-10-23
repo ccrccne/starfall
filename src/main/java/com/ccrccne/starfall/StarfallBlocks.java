@@ -50,12 +50,25 @@ public final class StarfallBlocks {
 			.noOcclusion()
 			.pushReaction(PushReaction.POPPED));
 
+	// Lucecita invisible de la varita estelar; se apaga sola y no tiene ítem
+	public static final Block STAR_LIGHT = registerBlock("star_light", StarLightBlock::new, BlockBehaviour.Properties.of()
+			.replaceable()
+			.noCollision()
+			.noOcclusion()
+			.noLootTable()
+			.instabreak()
+			.lightLevel(state -> 15));
+
 	private StarfallBlocks() {
 	}
 
-	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+	private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
 		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, Starfall.id(name));
-		Block block = Registry.register(BuiltInRegistries.BLOCK, blockKey, factory.apply(properties.setId(blockKey)));
+		return Registry.register(BuiltInRegistries.BLOCK, blockKey, factory.apply(properties.setId(blockKey)));
+	}
+
+	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+		Block block = registerBlock(name, factory, properties);
 
 		ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Starfall.id(name));
 		Item.Properties itemProperties = new Item.Properties().setId(itemKey).useBlockDescriptionPrefix();
