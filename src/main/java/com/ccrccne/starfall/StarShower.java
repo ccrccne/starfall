@@ -16,11 +16,11 @@ public final class StarShower {
 	}
 
 	public static long day(Level level) {
-		return Math.floorDiv(level.getOverworldClockTime(), DAY_TICKS);
+		return Math.floorDiv(level.getDayTime(), DAY_TICKS);
 	}
 
 	public static long timeOfDay(Level level) {
-		return Math.floorMod(level.getOverworldClockTime(), DAY_TICKS);
+		return Math.floorMod(level.getDayTime(), DAY_TICKS);
 	}
 
 	// La primera noche de un mundo siempre hay lluvia, para descubrir el evento pronto
@@ -30,7 +30,7 @@ public final class StarShower {
 
 	// ¿Está pasando ahora mismo?
 	public static boolean isActive(Level level) {
-		return level.dimension() == Level.OVERWORLD && level.isDarkOutside() && isShowerNight(day(level));
+		return level.dimension() == Level.OVERWORLD && level.isNight() && isShowerNight(day(level));
 	}
 
 	// Dirección (en radianes) hacia la que viajan todas las estrellas de esa noche

@@ -10,7 +10,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -138,7 +137,7 @@ public final class ShootingStars {
 				level.setBlock(target, StarfallBlocks.FALLEN_STAR.defaultBlockState(), Block.UPDATE_ALL);
 				for (ServerPlayer player : level.players()) {
 					if (player.blockPosition().closerThan(target, 64)) {
-						player.sendOverlayMessage(Component.translatable("message.starfall.star_fell"));
+						player.displayClientMessage(Component.translatable("message.starfall.star_fell"), true);
 					}
 				}
 			}
@@ -146,8 +145,9 @@ public final class ShootingStars {
 
 		// Partículas que se ven desde lejos (como los fuegos artificiales)
 		void particles(SimpleParticleType type, Vec3 p, int count, double spread, double speed) {
-			level.sendParticles(type, true, true, p.x, p.y, p.z, count, spread, spread, spread, speed,
-					ClientboundLevelParticlesPacket.RandomizationType.DEFAULT);
+			for (ServerPlayer player : level.players()) {
+				level.sendParticles(player, type, true, p.x, p.y, p.z, count, spread, spread, spread, speed);
+			}
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package com.ccrccne.starfall;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -16,6 +18,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 // Lucecita flotante que deja la varita estelar: ilumina un rato y luego se apaga sola.
 // Es invisible como el bloque de luz de Minecraft; solo se ven sus destellos.
 public class StarLightBlock extends Block {
+	public static final MapCodec<StarLightBlock> CODEC = simpleCodec(StarLightBlock::new);
+
+	@Override
+	protected MapCodec<? extends Block> codec() {
+		return CODEC;
+	}
 	// 60 segundos
 	private static final int DURATION = 20 * 60;
 

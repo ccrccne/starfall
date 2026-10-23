@@ -306,7 +306,6 @@
         "axis": "y",
         "angle": 45
       },
-      "shade_direction_override": "up",
       "faces": {
         "north": {
           "uv": [
@@ -326,7 +325,8 @@
           ],
           "texture": "#side"
         }
-      }
+      },
+      "shade": false
     },
     {
       "from": [
@@ -348,7 +348,6 @@
         "axis": "y",
         "angle": 45
       },
-      "shade_direction_override": "up",
       "faces": {
         "west": {
           "uv": [
@@ -368,7 +367,8 @@
           ],
           "texture": "#side"
         }
-      }
+      },
+      "shade": false
     }
   ]
 }

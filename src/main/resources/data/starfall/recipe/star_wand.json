@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "F": "starfall:star_fragment",
-    "S": "minecraft:stick"
+    "F": {
+      "item": "starfall:star_fragment"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
   },
   "pattern": [
     "  F",
@@ -11,6 +15,7 @@
     "S  "
   ],
   "result": {
-    "id": "starfall:star_wand"
+    "id": "starfall:star_wand",
+    "count": 1
   }
 }

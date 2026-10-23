@@ -6,7 +6,7 @@ Algunas noches el cielo de Minecraft se llena de estrellas fugaces. Todas cruzan
 
 ![Lluvia de estrellas sobre un claro con lámparas de papel de colores](images/lluvia.gif)
 
-Mod para **Fabric**, Minecraft **26.3**.
+Mod para **Fabric**. Esta rama es la versión para Minecraft **1.21.1** (la versión para 26.3 está en la rama [`main`](https://github.com/ccrccne/starfall)).
 
 ## Índice
 1. [Qué trae](#qué-trae)
@@ -67,9 +67,9 @@ Necesitan permisos de administrador (o trucos activados en un mundo de un jugado
 | `/starfall estrella` | Hace caer una estrella cerca de ti al instante |
 
 ## Instalación
-1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para Minecraft 26.3.
+1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para Minecraft 1.21.1.
 2. Descarga **[Fabric API](https://modrinth.com/mod/fabric-api)** para la misma versión.
-3. Descarga `starfall-1.0.0.jar` desde la página de **[Releases](https://github.com/ccrccne/starfall/releases)**.
+3. Descarga `starfall-1.0.0+1.21.1.jar` desde la página de **[Releases](https://github.com/ccrccne/starfall/releases)**.
 4. Copia los dos `.jar` en la carpeta `mods` de tu Minecraft:
    - Windows: `%appdata%\.minecraft\mods`
    - macOS: `~/Library/Application Support/minecraft/mods`
@@ -82,19 +82,19 @@ En un servidor hay que instalar el mod también en el servidor para que caigan e
 El mod trae mapas de brillo en formato **labPBR**. Con **[Iris](https://modrinth.com/mod/iris)** y un pack de shaders compatible (por ejemplo Complementary o BSL), la estrella caída, los fragmentos, el papel de las lámparas y las estrellitas del bloque de cielo brillan con resplandor. Sin shaders se ven normales.
 
 ## Compilar desde el código
-Necesitas **Java 25**.
+Necesitas **Java 21** o superior.
 ```bash
-git clone https://github.com/ccrccne/starfall.git
+git clone -b mc1.21.1 https://github.com/ccrccne/starfall.git
 cd starfall
 ./gradlew build
 ```
 El `.jar` queda en `build/libs`. Para abrir un Minecraft de pruebas con el mod: `./gradlew runClient`.
 
-Las capturas de este README son reales: las toma una prueba automática (`./gradlew runClientGameTest`) que crea un mundo, monta la escena y fotografía la lluvia.
+Las capturas de este README son reales y están tomadas en la versión 26.3 (rama `main`), con una prueba automática que crea un mundo, monta la escena y fotografía la lluvia. En 1.21.1 el mod se ve igual.
 
 ## Preguntas frecuentes
 - **No veo estrellas:** solo salen en las noches con lluvia de estrellas y con el cielo despejado. Prueba `/starfall lluvia`.
-- **¿Funciona en otras versiones?** Esta versión es para Minecraft 26.3. Si quieres otra, abre un *issue*.
+- **¿Funciona en otras versiones?** Hay versión para **26.3** y para **1.21.1**. Si quieres otra, abre un *issue*.
 - **¿Funciona con otros mods?** Debería: no cambia nada de Minecraft, solo añade cosas.
 
 ## Licencia

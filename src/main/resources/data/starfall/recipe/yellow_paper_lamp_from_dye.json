@@ -3,26 +3,59 @@
   "category": "building",
   "group": "paper_lamp",
   "ingredients": [
-    "minecraft:yellow_dye",
+    {
+      "item": "minecraft:yellow_dye"
+    },
     [
-      "starfall:white_paper_lamp",
-      "starfall:orange_paper_lamp",
-      "starfall:magenta_paper_lamp",
-      "starfall:light_blue_paper_lamp",
-      "starfall:lime_paper_lamp",
-      "starfall:pink_paper_lamp",
-      "starfall:gray_paper_lamp",
-      "starfall:light_gray_paper_lamp",
-      "starfall:cyan_paper_lamp",
-      "starfall:purple_paper_lamp",
-      "starfall:blue_paper_lamp",
-      "starfall:brown_paper_lamp",
-      "starfall:green_paper_lamp",
-      "starfall:red_paper_lamp",
-      "starfall:black_paper_lamp"
+      {
+        "item": "starfall:white_paper_lamp"
+      },
+      {
+        "item": "starfall:orange_paper_lamp"
+      },
+      {
+        "item": "starfall:magenta_paper_lamp"
+      },
+      {
+        "item": "starfall:light_blue_paper_lamp"
+      },
+      {
+        "item": "starfall:lime_paper_lamp"
+      },
+      {
+        "item": "starfall:pink_paper_lamp"
+      },
+      {
+        "item": "starfall:gray_paper_lamp"
+      },
+      {
+        "item": "starfall:light_gray_paper_lamp"
+      },
+      {
+        "item": "starfall:cyan_paper_lamp"
+      },
+      {
+        "item": "starfall:purple_paper_lamp"
+      },
+      {
+        "item": "starfall:blue_paper_lamp"
+      },
+      {
+        "item": "starfall:brown_paper_lamp"
+      },
+      {
+        "item": "starfall:green_paper_lamp"
+      },
+      {
+        "item": "starfall:red_paper_lamp"
+      },
+      {
+        "item": "starfall:black_paper_lamp"
+      }
     ]
   ],
   "result": {
-    "id": "starfall:yellow_paper_lamp"
+    "id": "starfall:yellow_paper_lamp",
+    "count": 1
   }
 }

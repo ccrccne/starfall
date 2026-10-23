@@ -1,36 +1,29 @@
 package com.ccrccne.starfall;
 
-import java.util.function.Function;
-
-import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
 public final class StarfallItems {
-	public static final Item STAR_FRAGMENT = register("star_fragment", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
-	public static final Item STAR_WAND = register("star_wand", StarWandItem::new, new Item.Properties().durability(64).repairable(STAR_FRAGMENT).rarity(Rarity.UNCOMMON));
-
-	// Pestaña propia en el modo creativo con todo lo del mod
-	public static final ResourceKey<CreativeModeTab> TAB_KEY = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Starfall.id("starfall"));
+	public static final Item STAR_FRAGMENT = register("star_fragment", new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	public static final Item STAR_WAND = register("star_wand", new StarWandItem(new Item.Properties().durability(64).rarity(Rarity.UNCOMMON)));
 
 	private StarfallItems() {
 	}
 
-	private static Item register(String name, Function<Item.Properties, Item> factory, Item.Properties properties) {
-		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Starfall.id(name));
-		return Registry.register(BuiltInRegistries.ITEM, key, factory.apply(properties.setId(key)));
+	private static Item register(String name, Item item) {
+		return Registry.register(BuiltInRegistries.ITEM, Starfall.id(name), item);
 	}
 
+	// Pestaña propia en el modo creativo con todo lo del mod
 	public static void init() {
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, TAB_KEY, FabricCreativeModeTab.builder()
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Starfall.id("starfall"), FabricItemGroup.builder()
 				.title(Component.translatable("itemGroup.starfall"))
 				.icon(() -> new ItemStack(STAR_FRAGMENT))
 				.displayItems((parameters, output) -> {

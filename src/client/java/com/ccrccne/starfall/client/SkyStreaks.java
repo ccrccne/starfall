@@ -37,7 +37,7 @@ public final class SkyStreaks {
 
 		if (StarShower.isActive(level) && !level.isRaining()) {
 			RandomSource random = level.getRandom();
-			Vec3 camera = minecraft.gameRenderer.mainCamera().position();
+			Vec3 camera = minecraft.gameRenderer.getMainCamera().getPosition();
 			double direction = StarShower.direction(StarShower.day(level));
 			if (random.nextInt(CHANCE) == 0) {
 				ACTIVE.add(Streak.random(camera, direction, random));
@@ -104,7 +104,7 @@ public final class SkyStreaks {
 			// Muchos puntitos por tick para que la estela sea una línea fina y continua
 			for (int i = 0; i < 14; i++) {
 				Vec3 p = prev.lerp(pos, i / 14.0);
-				level.addParticle(StarfallParticles.STAR_STREAK, true, true, p.x, p.y, p.z, 0.0, 0.0, 0.0);
+				level.addParticle(StarfallParticles.STAR_STREAK, true, p.x, p.y, p.z, 0.0, 0.0, 0.0);
 			}
 			return --ticksLeft <= 0;
 		}

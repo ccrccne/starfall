@@ -4,18 +4,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.SingleQuadParticle;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.LightCoordsUtil;
-import net.minecraft.util.RandomSource;
 
 // Puntito de luz que se apaga y encoge rápido; muchos seguidos forman la estela de una estrella fugaz
-public class StarStreakParticle extends SingleQuadParticle {
+public class StarStreakParticle extends TextureSheetParticle {
 	private float startSize;
 
 	StarStreakParticle(ClientLevel level, double x, double y, double z, double xd, double yd, double zd, SpriteSet sprites) {
-		super(level, x, y, z, sprites.first());
+		super(level, x, y, z);
+		this.pickSprite(sprites);
 		this.xd = xd;
 		this.yd = yd;
 		this.zd = zd;
@@ -44,13 +44,13 @@ public class StarStreakParticle extends SingleQuadParticle {
 	}
 
 	@Override
-	protected SingleQuadParticle.Layer getLayer() {
-		return SingleQuadParticle.Layer.TRANSLUCENT;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
 	@Override
-	public int getLightCoords(final float a) {
-		return LightCoordsUtil.FULL_BRIGHT;
+	public int getLightColor(float partialTick) {
+		return 15728880;
 	}
 
 	public static class Provider implements ParticleProvider<SimpleParticleType> {
@@ -62,12 +62,12 @@ public class StarStreakParticle extends SingleQuadParticle {
 
 		@Override
 		public Particle createParticle(SimpleParticleType options, ClientLevel level, double x, double y, double z,
-				double xd, double yd, double zd, RandomSource random) {
+				double xd, double yd, double zd) {
 			StarStreakParticle particle = new StarStreakParticle(level, x, y, z, xd, yd, zd, this.sprites);
 			// Más grande cuanto más lejos, para que se vea igual de bien en el cielo que cerca
-			double distance = Math.sqrt(Minecraft.getInstance().gameRenderer.mainCamera().position().distanceToSqr(x, y, z));
+			double distance = Math.sqrt(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition().distanceToSqr(x, y, z));
 			// Fina: grosor de una línea delgada aunque esté lejos
-			particle.quadSize = (float) Math.max(0.08, distance * 0.0055) * (0.85F + random.nextFloat() * 0.3F);
+			particle.quadSize = (float) Math.max(0.08, distance * 0.0055) * (0.85F + level.random.nextFloat() * 0.3F);
 			particle.startSize = particle.quadSize;
 			return particle;
 		}

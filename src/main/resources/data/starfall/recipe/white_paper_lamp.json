@@ -3,8 +3,12 @@
   "category": "building",
   "group": "paper_lamp",
   "key": {
-    "F": "starfall:star_fragment",
-    "P": "minecraft:paper"
+    "F": {
+      "item": "starfall:star_fragment"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
   },
   "pattern": [
     " P ",

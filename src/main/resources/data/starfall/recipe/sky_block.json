@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "C": "minecraft:light_blue_concrete",
-    "F": "starfall:star_fragment"
+    "C": {
+      "item": "minecraft:light_blue_concrete"
+    },
+    "F": {
+      "item": "starfall:star_fragment"
+    }
   },
   "pattern": [
     "CCC",

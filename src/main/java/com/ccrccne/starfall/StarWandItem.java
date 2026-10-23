@@ -2,12 +2,13 @@ package com.ccrccne.starfall;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,10 +29,17 @@ public class StarWandItem extends Item {
 		super(properties);
 	}
 
+	// Se repara en el yunque con fragmentos de estrella
 	@Override
-	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
+	public boolean isValidRepairItem(ItemStack stack, ItemStack repair) {
+		return repair.is(StarfallItems.STAR_FRAGMENT);
+	}
+
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		ItemStack stack = player.getItemInHand(hand);
 		if (!(level instanceof ServerLevel serverLevel)) {
-			return InteractionResult.SUCCESS;
+			return InteractionResultHolder.success(stack);
 		}
 
 		Vec3 eye = player.getEyePosition();
@@ -49,8 +57,9 @@ public class StarWandItem extends Item {
 		int steps = (int) (from.distanceTo(to) * 2);
 		for (int i = 0; i <= steps; i++) {
 			Vec3 p = from.lerp(to, (double) i / Math.max(steps, 1));
-			serverLevel.sendParticles(StarfallParticles.STAR_STREAK, true, false, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0.0,
-					ClientboundLevelParticlesPacket.RandomizationType.DEFAULT);
+			for (ServerPlayer viewer : serverLevel.players()) {
+				serverLevel.sendParticles(viewer, StarfallParticles.STAR_STREAK, true, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0.0);
+			}
 		}
 		serverLevel.sendParticles(ParticleTypes.END_ROD, to.x, to.y, to.z, 12, 0.2, 0.2, 0.2, 0.05);
 		level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 0.8F, 1.6F);
@@ -61,9 +70,8 @@ public class StarWandItem extends Item {
 			level.playSound(null, target, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.2F);
 		}
 
-		ItemStack stack = player.getItemInHand(hand);
-		player.getCooldowns().addCooldown(stack, COOLDOWN);
-		stack.hurtAndBreak(1, player, hand);
-		return InteractionResult.SUCCESS;
+		player.getCooldowns().addCooldown(this, COOLDOWN);
+		stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+		return InteractionResultHolder.success(stack);
 	}
 }
