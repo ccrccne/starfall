@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "starfall",
+	"version": "${version}",
+	"name": "Starfall",
+	"description": "Por las noches caen estrellas fugaces. Recoge sus fragmentos y crea cosas en azul cielo.",
+	"authors": [
+		"ccrccne"
+	],
+	"contact": {
+		"homepage": "https://ccrccne.github.io",
+		"sources": "https://github.com/ccrccne/starfall"
+	},
+	"license": "MIT",
+	"icon": "assets/starfall/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.ccrccne.starfall.Starfall"
+		],
+		"client": [
+			"com.ccrccne.starfall.client.StarfallClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

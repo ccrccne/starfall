@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "paper_lamp",
+  "ingredients": [
+    "minecraft:light_gray_dye",
+    [
+      "starfall:white_paper_lamp",
+      "starfall:orange_paper_lamp",
+      "starfall:magenta_paper_lamp",
+      "starfall:light_blue_paper_lamp",
+      "starfall:yellow_paper_lamp",
+      "starfall:lime_paper_lamp",
+      "starfall:pink_paper_lamp",
+      "starfall:gray_paper_lamp",
+      "starfall:cyan_paper_lamp",
+      "starfall:purple_paper_lamp",
+      "starfall:blue_paper_lamp",
+      "starfall:brown_paper_lamp",
+      "starfall:green_paper_lamp",
+      "starfall:red_paper_lamp",
+      "starfall:black_paper_lamp"
+    ]
+  ],
+  "result": {
+    "id": "starfall:light_gray_paper_lamp"
+  }
+}

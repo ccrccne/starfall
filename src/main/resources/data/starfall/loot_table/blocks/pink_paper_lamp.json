@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "starfall:pink_paper_lamp"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "starfall:blocks/pink_paper_lamp"
+}

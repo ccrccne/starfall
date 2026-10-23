@@ -1,0 +1,7 @@
+{
+  "parent": "starfall:block/template_paper_lamp",
+  "textures": {
+    "side": "starfall:block/pink_paper_lamp",
+    "top": "starfall:block/pink_paper_lamp_top"
+  }
+}

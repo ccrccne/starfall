@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "paper_lamp",
+  "key": {
+    "F": "starfall:star_fragment",
+    "P": "minecraft:paper"
+  },
+  "pattern": [
+    " P ",
+    "PFP",
+    " P "
+  ],
+  "result": {
+    "count": 2,
+    "id": "starfall:white_paper_lamp"
+  }
+}
