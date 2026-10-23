@@ -8,6 +8,8 @@ Algunas noches el cielo de Minecraft se llena de estrellas fugaces. Todas cruzan
 
 Mod para **Fabric**. Esta rama es la versión para Minecraft **1.21.1** (la versión para 26.3 está en la rama [`main`](https://github.com/ccrccne/starfall)).
 
+**Descarga:** [Modrinth](https://modrinth.com/mod/starfall-ccrccne) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/starfall-star-showers) · [GitHub Releases](https://github.com/ccrccne/starfall/releases)
+
 ## Índice
 1. [Qué trae](#qué-trae)
 2. [Recetas](#recetas)
@@ -69,7 +71,7 @@ Necesitan permisos de administrador (o trucos activados en un mundo de un jugado
 ## Instalación
 1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para Minecraft 1.21.1.
 2. Descarga **[Fabric API](https://modrinth.com/mod/fabric-api)** para la misma versión.
-3. Descarga `starfall-1.0.0+1.21.1.jar` desde la página de **[Releases](https://github.com/ccrccne/starfall/releases)**.
+3. Descarga `starfall-1.0.0+1.21.1.jar` desde **[Modrinth](https://modrinth.com/mod/starfall-ccrccne)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/starfall-star-showers)** o **[Releases](https://github.com/ccrccne/starfall/releases)**.
 4. Copia los dos `.jar` en la carpeta `mods` de tu Minecraft:
    - Windows: `%appdata%\.minecraft\mods`
    - macOS: `~/Library/Application Support/minecraft/mods`
