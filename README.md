@@ -6,7 +6,7 @@ Algunas noches el cielo de Minecraft se llena de estrellas fugaces. Todas cruzan
 
 ![Lluvia de estrellas sobre un claro con lámparas de papel de colores](images/lluvia.gif)
 
-Mod para **Fabric**, Minecraft **26.3**.
+Mod para **Fabric**: Minecraft **26.3** y **1.21.1** (la de 1.21.1 está en la rama [`mc1.21.1`](https://github.com/ccrccne/starfall/tree/mc1.21.1)).
 
 ## Índice
 1. [Qué trae](#qué-trae)
@@ -67,9 +67,9 @@ Necesitan permisos de administrador (o trucos activados en un mundo de un jugado
 | `/starfall estrella` | Hace caer una estrella cerca de ti al instante |
 
 ## Instalación
-1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para Minecraft 26.3.
+1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para tu versión de Minecraft (26.3 o 1.21.1).
 2. Descarga **[Fabric API](https://modrinth.com/mod/fabric-api)** para la misma versión.
-3. Descarga `starfall-1.0.0.jar` desde la página de **[Releases](https://github.com/ccrccne/starfall/releases)**.
+3. Descarga el `.jar` de tu versión desde **[Releases](https://github.com/ccrccne/starfall/releases)**: `starfall-1.0.0.jar` para 26.3 o `starfall-1.0.0+1.21.1.jar` para 1.21.1.
 4. Copia los dos `.jar` en la carpeta `mods` de tu Minecraft:
    - Windows: `%appdata%\.minecraft\mods`
    - macOS: `~/Library/Application Support/minecraft/mods`
@@ -94,7 +94,7 @@ Las capturas de este README son reales: las toma una prueba automática (`./grad
 
 ## Preguntas frecuentes
 - **No veo estrellas:** solo salen en las noches con lluvia de estrellas y con el cielo despejado. Prueba `/starfall lluvia`.
-- **¿Funciona en otras versiones?** Esta versión es para Minecraft 26.3. Si quieres otra, abre un *issue*.
+- **¿Funciona en otras versiones?** Hay versión para **26.3** y para **1.21.1**: elige el `.jar` de tu versión en Releases. Si quieres otra, abre un *issue*.
 - **¿Funciona con otros mods?** Debería: no cambia nada de Minecraft, solo añade cosas.
 
 ## Licencia
