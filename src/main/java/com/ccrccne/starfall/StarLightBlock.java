@@ -57,7 +57,7 @@ public class StarLightBlock extends Block {
 			double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.4;
 			double y = pos.getY() + 0.5 + (random.nextDouble() - 0.5) * 0.4;
 			double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.4;
-			level.addParticle(StarfallParticles.STAR_STREAK, x, y, z, 0.0, 0.01, 0.0);
+			level.addParticle(StarfallParticles.STAR_STREAK.get(), x, y, z, 0.0, 0.01, 0.0);
 		}
 	}
 }

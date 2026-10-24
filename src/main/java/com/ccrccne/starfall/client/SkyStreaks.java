@@ -104,7 +104,7 @@ public final class SkyStreaks {
 			// Muchos puntitos por tick para que la estela sea una línea fina y continua
 			for (int i = 0; i < 14; i++) {
 				Vec3 p = prev.lerp(pos, i / 14.0);
-				level.addParticle(StarfallParticles.STAR_STREAK, true, p.x, p.y, p.z, 0.0, 0.0, 0.0);
+				level.addParticle(StarfallParticles.STAR_STREAK.get(), true, p.x, p.y, p.z, 0.0, 0.0, 0.0);
 			}
 			return --ticksLeft <= 0;
 		}

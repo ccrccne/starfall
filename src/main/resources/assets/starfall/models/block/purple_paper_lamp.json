@@ -3,5 +3,6 @@
   "textures": {
     "side": "starfall:block/purple_paper_lamp",
     "top": "starfall:block/purple_paper_lamp_top"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

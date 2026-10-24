@@ -1,32 +1,53 @@
 package com.ccrccne.starfall;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import com.ccrccne.starfall.client.StarfallClient;
 
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Starfall implements ModInitializer {
+@Mod(Starfall.MOD_ID)
+public class Starfall {
 	public static final String MOD_ID = "starfall";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	@Override
-	public void onInitialize() {
-		StarfallParticles.init();
-		StarfallBlocks.init();
-		StarfallItems.init();
+	public Starfall(IEventBus modBus) {
+		StarfallParticles.PARTICLES.register(modBus);
+		StarfallBlocks.BLOCKS.register(modBus);
+		StarfallItems.ITEMS.register(modBus);
+		StarfallItems.TABS.register(modBus);
 
-		ServerTickEvents.END_WORLD_TICK.register(ShootingStars::tick);
+		NeoForge.EVENT_BUS.addListener(Starfall::onLevelTick);
+		NeoForge.EVENT_BUS.addListener(Starfall::onRegisterCommands);
 
-		// /starfall estrella: hace caer una estrella cerca (para probar o para presumir)
-		// /starfall lluvia: salta a la próxima noche con lluvia de estrellas
-		CommandRegistrationCallback.EVENT.register((dispatcher, buildContext, selection) -> dispatcher.register(
+		if (FMLEnvironment.dist == Dist.CLIENT) {
+			StarfallClient.init(modBus);
+		}
+
+		LOGGER.info("Starfall: las estrellas están listas para caer");
+	}
+
+	private static void onLevelTick(LevelTickEvent.Post event) {
+		if (event.getLevel() instanceof ServerLevel level) {
+			ShootingStars.tick(level);
+		}
+	}
+
+	// /starfall estrella: hace caer una estrella cerca (para probar o para presumir)
+	// /starfall lluvia: salta a la próxima noche con lluvia de estrellas
+	private static void onRegisterCommands(RegisterCommandsEvent event) {
+		event.getDispatcher().register(
 				Commands.literal("starfall")
 						.requires(source -> source.hasPermission(2))
 						.then(Commands.literal("estrella").executes(context -> {
@@ -39,9 +60,7 @@ public class Starfall implements ModInitializer {
 							level.setDayTime(StarShower.nextShowerStart(level));
 							context.getSource().sendSuccess(() -> Component.translatable("commands.starfall.shower"), false);
 							return 1;
-						}))));
-
-		LOGGER.info("Starfall: las estrellas están listas para caer");
+						})));
 	}
 
 	public static ResourceLocation id(String path) {
