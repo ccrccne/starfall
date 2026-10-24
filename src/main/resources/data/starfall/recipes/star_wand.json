@@ -15,7 +15,7 @@
     "S  "
   ],
   "result": {
-    "id": "starfall:star_wand",
-    "count": 1
+    "count": 1,
+    "item": "starfall:star_wand"
   }
 }

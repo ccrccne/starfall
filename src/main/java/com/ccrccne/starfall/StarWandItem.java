@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -32,7 +31,7 @@ public class StarWandItem extends Item {
 	// Se repara en el yunque con fragmentos de estrella
 	@Override
 	public boolean isValidRepairItem(ItemStack stack, ItemStack repair) {
-		return repair.is(StarfallItems.STAR_FRAGMENT);
+		return repair.is(StarfallItems.STAR_FRAGMENT.get());
 	}
 
 	@Override
@@ -58,20 +57,20 @@ public class StarWandItem extends Item {
 		for (int i = 0; i <= steps; i++) {
 			Vec3 p = from.lerp(to, (double) i / Math.max(steps, 1));
 			for (ServerPlayer viewer : serverLevel.players()) {
-				serverLevel.sendParticles(viewer, StarfallParticles.STAR_STREAK, true, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0.0);
+				serverLevel.sendParticles(viewer, StarfallParticles.STAR_STREAK.get(), true, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0.0);
 			}
 		}
 		serverLevel.sendParticles(ParticleTypes.END_ROD, to.x, to.y, to.z, 12, 0.2, 0.2, 0.2, 0.05);
 		level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 0.8F, 1.6F);
 
 		BlockState current = level.getBlockState(target);
-		if (current.isAir() || current.is(StarfallBlocks.STAR_LIGHT)) {
-			level.setBlock(target, StarfallBlocks.STAR_LIGHT.defaultBlockState(), Block.UPDATE_ALL);
+		if (current.isAir() || current.is(StarfallBlocks.STAR_LIGHT.get())) {
+			level.setBlock(target, StarfallBlocks.STAR_LIGHT.get().defaultBlockState(), Block.UPDATE_ALL);
 			level.playSound(null, target, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.2F);
 		}
 
 		player.getCooldowns().addCooldown(this, COOLDOWN);
-		stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+		stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
 		return InteractionResultHolder.success(stack);
 	}
 }

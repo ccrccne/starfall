@@ -4,7 +4,7 @@
   "group": "paper_lamp",
   "ingredients": [
     {
-      "item": "minecraft:cyan_dye"
+      "item": "minecraft:gray_dye"
     },
     [
       {
@@ -29,10 +29,10 @@
         "item": "starfall:pink_paper_lamp"
       },
       {
-        "item": "starfall:gray_paper_lamp"
+        "item": "starfall:light_gray_paper_lamp"
       },
       {
-        "item": "starfall:light_gray_paper_lamp"
+        "item": "starfall:cyan_paper_lamp"
       },
       {
         "item": "starfall:purple_paper_lamp"
@@ -55,7 +55,7 @@
     ]
   ],
   "result": {
-    "id": "starfall:cyan_paper_lamp",
-    "count": 1
+    "count": 1,
+    "item": "starfall:gray_paper_lamp"
   }
 }

@@ -107,7 +107,7 @@ public final class ShootingStars {
 			// Estela: varios puntos entre la posición anterior y la nueva para que no tenga huecos
 			for (int i = 0; i < 6; i++) {
 				Vec3 p = prev.lerp(pos, i / 6.0);
-				particles(StarfallParticles.STAR_STREAK, p, 1, 0.0, 0.0);
+				particles(StarfallParticles.STAR_STREAK.get(), p, 1, 0.0, 0.0);
 			}
 			particles(ParticleTypes.FIREWORK, pos, 1, 0.15, 0.02);
 
@@ -134,7 +134,7 @@ public final class ShootingStars {
 			boolean canPlace = here.canBeReplaced() && here.getFluidState().isEmpty()
 					&& level.getBlockState(below).isFaceSturdy(level, below, Direction.UP);
 			if (canPlace) {
-				level.setBlock(target, StarfallBlocks.FALLEN_STAR.defaultBlockState(), Block.UPDATE_ALL);
+				level.setBlock(target, StarfallBlocks.FALLEN_STAR.get().defaultBlockState(), Block.UPDATE_ALL);
 				for (ServerPlayer player : level.players()) {
 					if (player.blockPosition().closerThan(target, 64)) {
 						player.displayClientMessage(Component.translatable("message.starfall.star_fell"), true);
