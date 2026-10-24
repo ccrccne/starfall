@@ -6,7 +6,15 @@ Algunas noches el cielo de Minecraft se llena de estrellas fugaces. Todas cruzan
 
 ![Lluvia de estrellas sobre un claro con lámparas de papel de colores](images/lluvia.gif)
 
-Mod para **Fabric**. Esta rama es la versión para Minecraft **1.21.1** (la versión para 26.3 está en la rama [`main`](https://github.com/ccrccne/starfall)).
+Funciona con **Fabric**, **Forge** (también con OptiFine) y **NeoForge**:
+
+| Minecraft | Cargador | Archivo | Rama del código |
+|---|---|---|---|
+| 26.3 | Fabric | `starfall-1.0.0.jar` | [`main`](https://github.com/ccrccne/starfall/tree/main) |
+| 1.21.1 | Fabric | `starfall-1.0.1+1.21.1.jar` | [`mc1.21.1`](https://github.com/ccrccne/starfall/tree/mc1.21.1) |
+| 1.21.1 | NeoForge | `starfall-1.0.0+neoforge-1.21.1.jar` | [`neoforge-1.21.1`](https://github.com/ccrccne/starfall/tree/neoforge-1.21.1) |
+| 1.20.1 | Fabric | `starfall-1.0.0+1.20.1.jar` | [`mc1.20.1`](https://github.com/ccrccne/starfall/tree/mc1.20.1) |
+| 1.20.1 | Forge | `starfall-1.0.0+forge-1.20.1.jar` | [`forge-1.20.1`](https://github.com/ccrccne/starfall/tree/forge-1.20.1) |
 
 **Descarga:** [Modrinth](https://modrinth.com/mod/starfall-ccrccne) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/starfall-star-showers) · [GitHub Releases](https://github.com/ccrccne/starfall/releases)
 
@@ -15,7 +23,7 @@ Mod para **Fabric**. Esta rama es la versión para Minecraft **1.21.1** (la vers
 2. [Recetas](#recetas)
 3. [Comandos](#comandos)
 4. [Instalación](#instalación)
-5. [Con shaders](#con-shaders)
+5. [Con OptiFine o shaders](#con-optifine-o-shaders)
 6. [Compilar desde el código](#compilar-desde-el-código)
 7. [Preguntas frecuentes](#preguntas-frecuentes)
 
@@ -69,34 +77,47 @@ Necesitan permisos de administrador (o trucos activados en un mundo de un jugado
 | `/starfall estrella` | Hace caer una estrella cerca de ti al instante |
 
 ## Instalación
-1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para Minecraft 1.21.1.
+Descarga el `.jar` de tu versión y cargador (mira la tabla de arriba) desde **[Modrinth](https://modrinth.com/mod/starfall-ccrccne)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/starfall-star-showers)** o **[Releases](https://github.com/ccrccne/starfall/releases)**.
+
+**Con Fabric**
+1. Instala **[Fabric Loader](https://fabricmc.net/use/installer/)** para tu versión de Minecraft.
 2. Descarga **[Fabric API](https://modrinth.com/mod/fabric-api)** para la misma versión.
-3. Descarga `starfall-1.0.0+1.21.1.jar` desde **[Modrinth](https://modrinth.com/mod/starfall-ccrccne)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/starfall-star-showers)** o **[Releases](https://github.com/ccrccne/starfall/releases)**.
-4. Copia los dos `.jar` en la carpeta `mods` de tu Minecraft:
-   - Windows: `%appdata%\.minecraft\mods`
-   - macOS: `~/Library/Application Support/minecraft/mods`
-   - Linux: `~/.minecraft/mods`
-5. Abre el launcher, elige el perfil **fabric-loader** y juega.
+3. Copia Starfall y Fabric API en la carpeta `mods` y abre el perfil **fabric-loader**.
+
+**Con Forge (1.20.1)**
+1. Instala **[Forge](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html)** para 1.20.1.
+2. Copia Starfall en la carpeta `mods` y abre el perfil **forge**. No necesita nada más.
+
+**Con NeoForge (1.21.1)**
+1. Instala **[NeoForge](https://neoforged.net/)** para 1.21.1.
+2. Copia Starfall en la carpeta `mods` y abre el perfil **neoforge**. No necesita nada más.
+
+La carpeta `mods` está en:
+- Windows: `%appdata%\.minecraft\mods`
+- macOS: `~/Library/Application Support/minecraft/mods`
+- Linux: `~/.minecraft/mods`
 
 En un servidor hay que instalar el mod también en el servidor para que caigan estrellas y existan las lámparas y la varita.
 
-## Con shaders
-El mod trae mapas de brillo en formato **labPBR**. Con **[Iris](https://modrinth.com/mod/iris)** y un pack de shaders compatible (por ejemplo Complementary o BSL), la estrella caída, los fragmentos, el papel de las lámparas y las estrellitas del bloque de cielo brillan con resplandor. Sin shaders se ven normales.
+## Con OptiFine o shaders
+- **OptiFine** no es un cargador de mods: funciona encima de **Forge**. Para usarlo con Starfall, instala la versión de **Forge 1.20.1** y pon OptiFine en la misma carpeta `mods`.
+- El mod trae mapas de brillo en formato **labPBR**. Con un pack de shaders compatible (por ejemplo Complementary o BSL), ya sea con **[Iris](https://modrinth.com/mod/iris)** o con OptiFine, la estrella caída, los fragmentos, el papel de las lámparas y las estrellitas del bloque de cielo brillan con resplandor. Sin shaders se ven normales.
 
 ## Compilar desde el código
-Necesitas **Java 21** o superior.
+Cada versión está en su propia rama (mira la tabla de arriba). Por ejemplo, para la de Forge 1.20.1:
 ```bash
-git clone -b mc1.21.1 https://github.com/ccrccne/starfall.git
+git clone -b forge-1.20.1 https://github.com/ccrccne/starfall.git
 cd starfall
 ./gradlew build
 ```
-El `.jar` queda en `build/libs`. Para abrir un Minecraft de pruebas con el mod: `./gradlew runClient`.
+El `.jar` queda en `build/libs`. Para abrir un Minecraft de pruebas con el mod: `./gradlew runClient`. La rama `main` (26.3) necesita **Java 25**; las demás, **Java 21**.
 
-Las capturas de este README son reales y están tomadas en la versión 26.3 (rama `main`), con una prueba automática que crea un mundo, monta la escena y fotografía la lluvia. En 1.21.1 el mod se ve igual.
+Las capturas de este README son reales: las toma una prueba automática que crea un mundo, monta la escena y fotografía la lluvia. Las versiones de 1.21.1 y 1.20.1 también se probaron dentro del juego.
 
 ## Preguntas frecuentes
 - **No veo estrellas:** solo salen en las noches con lluvia de estrellas y con el cielo despejado. Prueba `/starfall lluvia`.
-- **¿Funciona en otras versiones?** Hay versión para **26.3** y para **1.21.1**. Si quieres otra, abre un *issue*.
+- **¿Funciona en otras versiones?** Hay versión para **26.3**, **1.21.1** y **1.20.1**: elige el `.jar` de tu versión y cargador en Releases. Si quieres otra, abre un *issue*.
+- **¿Funciona con OptiFine?** Sí, con la versión de Forge 1.20.1. En Fabric, en lugar de OptiFine se usan Sodium e Iris.
 - **¿Funciona con otros mods?** Debería: no cambia nada de Minecraft, solo añade cosas.
 
 ## Licencia
