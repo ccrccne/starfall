@@ -1,7 +1,5 @@
 package com.ccrccne.starfall;
 
-import com.mojang.serialization.MapCodec;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -15,12 +13,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 // Estrellita que queda en el suelo tras caer; brilla y suelta destellos
 public class FallenStarBlock extends Block {
-	public static final MapCodec<FallenStarBlock> CODEC = simpleCodec(FallenStarBlock::new);
-
-	@Override
-	protected MapCodec<? extends Block> codec() {
-		return CODEC;
-	}
 	private static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
 
 	public FallenStarBlock(BlockBehaviour.Properties properties) {
@@ -28,7 +20,7 @@ public class FallenStarBlock extends Block {
 	}
 
 	@Override
-	protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
+	public VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
 		return SHAPE;
 	}
 
